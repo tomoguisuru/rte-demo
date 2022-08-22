@@ -14,7 +14,7 @@ Basic implementation for RT Events
 #### Step 1:
 Clone the project
 ```bash
-git clone --recurse-submodules git@gitlab.edgecastcdn.net:uplynk/rts-team/rte-demo.git
+git clone --recurse-submodules git@github.com:tomoguisuru/rte-demo.git
 ```
 
 #### Step 2:
