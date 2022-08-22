@@ -1,0 +1,69 @@
+services:
+  api:
+    container_name: rte-api
+    build: ./rte-api
+    volumes:
+      - ./.env:/.env
+    #   - ./nodemon.json:/home/node/app/nodemon.json
+    command: npm run dev
+    ports:
+      - "${PORT}:${PORT}"
+    expose:
+      - ${PORT}
+    depends_on:
+      - cache
+      - db
+    networks:
+      - rtsnet
+    env_file:
+      ./.env
+  web:
+    build: ./rte-app
+    volumes:
+      - ./.env:/app/.env
+    ports:
+      - "4200:4200"
+    expose:
+      - 4200
+    depends_on:
+      - api
+    # env_file:
+    #   ./.env
+  cache:
+    container_name: redis-server
+    image: redis
+    # restart: always
+    # command: redis-server
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+    expose:
+      - ${REDIS_PORT}
+    volumes:
+      - cache:/data
+    networks:
+      - rtsnet
+  db:
+    container_name: postgres-db
+    image: postgres:13.8
+    restart: always
+    command: postgres
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - rtsnet
+
+networks:
+  rtsnet:
+
+volumes:
+  db:
+    driver: local
+  cache:
+    driver: local

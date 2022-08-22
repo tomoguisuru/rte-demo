@@ -1,0 +1,6 @@
+[submodule "rte-api"]
+	path = rte-api
+	url = git@gitlab.edgecastcdn.net:uplynk/rts-team/rte-api.git
+[submodule "rte-app"]
+	path = rte-app
+	url = git@gitlab.edgecastcdn.net:uplynk/rts-team/rte-app.git

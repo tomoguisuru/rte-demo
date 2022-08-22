@@ -1,0 +1,6 @@
+[submodule "rte-api"]
+	path = rte-api
+	url = git@github.com:tomoguisuru/rte-api.git
+[submodule "rte-app"]
+	path = rte-app
+	url = git@github.com:tomoguisuru/rte-app.git
